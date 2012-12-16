@@ -199,6 +199,27 @@ describe('Module.toAMD() [AMD]', function() {
 
 describe('Module.toAMD() with burnID option [AMD]', function() {
 
+  describe('factory without dependencies', function() {
+    var m = new Module('test/data/amd/modules/factory-without-dependencies');
+
+    before(function(done) {
+      m.load('test/data/amd/modules/factory-without-dependencies.js', function(err) {
+        if (err) return done(err);
+        return done();
+      });
+    })
+
+    describe('output', function() {
+      it('should be AMD module', function() {
+        var out = m.toAMD({ burnID: true });
+        var expect = fs.readFileSync('test/expect/amd/modules/factory-without-dependencies.id.expect.js', 'utf8')
+        //console.log('out: ' + out);
+        //console.log('expect: ' + expect);
+        out.should.equal(expect);
+      })
+    })
+  }) // factory without dependencies
+
   describe('factory with dependencies', function() {
     var m = new Module('test/data/amd/modules/factory-with-dependencies');
 
