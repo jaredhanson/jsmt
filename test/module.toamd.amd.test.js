@@ -241,4 +241,46 @@ describe('Module.toAMD() with burnID option [AMD]', function() {
     })
   }) // factory with dependencies
   
+  describe('internal require', function() {
+    var m = new Module('test/data/amd/modules/internal-require');
+
+    before(function(done) {
+      m.load('test/data/amd/modules/internal-require.js', function(err) {
+        if (err) return done(err);
+        return done();
+      });
+    })
+
+    describe('output', function() {
+      it('should be AMD module', function() {
+        var out = m.toAMD({ burnID: true });
+        var expect = fs.readFileSync('test/expect/amd/modules/internal-require.id.expect.js', 'utf8')
+        //console.log('out: ' + out);
+        //console.log('expect: ' + expect);
+        out.should.equal(expect);
+      })
+    })
+  }) // internal require
+  
+  describe('internal require callback', function() {
+    var m = new Module('test/data/amd/modules/internal-require-callback');
+
+    before(function(done) {
+      m.load('test/data/amd/modules/internal-require-callback.js', function(err) {
+        if (err) return done(err);
+        return done();
+      });
+    })
+
+    describe('output', function() {
+      it('should be AMD module', function() {
+        var out = m.toAMD({ burnID: true });
+        var expect = fs.readFileSync('test/expect/amd/modules/internal-require-callback.id.expect.js', 'utf8')
+        console.log('out: ' + out);
+        console.log('expect: ' + expect);
+        out.should.equal(expect);
+      })
+    })
+  }) // internal require callback
+  
 });
