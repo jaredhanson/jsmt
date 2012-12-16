@@ -199,6 +199,27 @@ describe('Module.toAMD() [AMD]', function() {
 
 describe('Module.toAMD() with burnID option [AMD]', function() {
 
+  describe('object literal', function() {
+    var m = new Module('test/data/amd/modules/object-literal');
+
+    before(function(done) {
+      m.load('test/data/amd/modules/object-literal.js', function(err) {
+        if (err) return done(err);
+        return done();
+      });
+    })
+
+    describe('output', function() {
+      it('should be AMD module', function() {
+        var out = m.toAMD({ burnID: true });
+        var expect = fs.readFileSync('test/expect/amd/modules/object-literal.id.expect.js', 'utf8')
+        //console.log(out);
+        //console.log(expect);
+        out.should.equal(expect);
+      })
+    })
+  }) // object literal
+
   describe('factory without dependencies', function() {
     var m = new Module('test/data/amd/modules/factory-without-dependencies');
 
@@ -241,6 +262,27 @@ describe('Module.toAMD() with burnID option [AMD]', function() {
     })
   }) // factory with dependencies
   
+  describe('CommonJS wrapping', function() {
+    var m = new Module('test/data/amd/modules/commonjs-wrapping');
+
+    before(function(done) {
+      m.load('test/data/amd/modules/commonjs-wrapping.js', function(err) {
+        if (err) return done(err);
+        return done();
+      });
+    })
+
+    describe('output', function() {
+      it('should be AMD module', function() {
+        var out = m.toAMD({ burnID: true });
+        var expect = fs.readFileSync('test/expect/amd/modules/commonjs-wrapping.id.expect.js', 'utf8')
+        //console.log('out: ' + out);
+        //console.log('expect: ' + expect);
+        out.should.equal(expect);
+      })
+    })
+  }) // CommonJS wrapping
+  
   describe('internal require', function() {
     var m = new Module('test/data/amd/modules/internal-require');
 
@@ -276,8 +318,8 @@ describe('Module.toAMD() with burnID option [AMD]', function() {
       it('should be AMD module', function() {
         var out = m.toAMD({ burnID: true });
         var expect = fs.readFileSync('test/expect/amd/modules/internal-require-callback.id.expect.js', 'utf8')
-        console.log('out: ' + out);
-        console.log('expect: ' + expect);
+        //console.log('out: ' + out);
+        //console.log('expect: ' + expect);
         out.should.equal(expect);
       })
     })
