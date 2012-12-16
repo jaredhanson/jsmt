@@ -1,0 +1,40 @@
+{
+  "name": "jsmt",
+  "version": "0.0.1",
+  "description": "JavaScript module transformation and transport.",
+  "keywords": ["modules", "commonjs", "amd", "umd", "require", "requirejs"],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jaredhanson/jsmt.git"
+  },
+  "bugs": {
+    "url": "http://github.com/jaredhanson/jsmt/issues"
+  },
+  "author": { "name": "Jared Hanson", "email": "jaredhanson@gmail.com", "url": "http://www.jaredhanson.net/" },
+  "licenses": [ {
+    "type": "MIT",
+    "url": "http://www.opensource.org/licenses/MIT" 
+  } ],
+  "main": "./lib",
+  "bin" : {
+    "jsmc" : "./bin/jsmc.js",
+    "jsmls" : "./bin/jsmls.js"
+  },
+  "dependencies": {
+    "pkginfo": "0.2.x",
+    "optimist": "0.3.x",
+    "esprima": "1.x.x",
+    "escodegen": "0.0.x",
+    "resolve": "0.2.x",
+    "amd-resolve": "0.1.x",
+    "debug": "0.7.x"
+  },
+  "devDependencies": {
+    "mocha": "1.x.x",
+    "should": "1.x.x"
+  },
+  "scripts": {
+    "test": "NODE_PATH=lib node_modules/.bin/mocha"
+  },
+  "engines": { "node": ">= 0.6.0" }
+}
