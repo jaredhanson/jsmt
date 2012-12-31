@@ -1,9 +1,26 @@
-REPORTER=spec
+SOURCES = bin/*.js lib/*.js lib/**/*.js
+
+# ==============================================================================
+# Node Tests
+# ==============================================================================
+
+MOCHA = ./node_modules/.bin/mocha
 
 test:
-	./node_modules/.bin/mocha \
+	$(MOCHA) \
 		--require should \
-		--reporter $(REPORTER) \
+		--reporter spec \
 		--bail
 
-.PHONY: test
+# ==============================================================================
+# Static Analysis
+# ==============================================================================
+
+JSHINT = jshint
+
+hint: lint
+lint:
+	$(JSHINT) $(SOURCES)
+
+
+.PHONY: test hint lint
