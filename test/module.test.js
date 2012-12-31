@@ -1,5 +1,4 @@
-var Module = require('../lib/module')
-  , should = require('should')
+var Module = require('../lib/module');
 
 describe('Module', function() {
   

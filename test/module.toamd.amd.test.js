@@ -1,6 +1,5 @@
 var Module = require('../lib/module')
-  , fs = require('fs')
-  , should = require('should')
+  , fs = require('fs');
 
 
 describe('Module.toAMD() [AMD]', function() {
