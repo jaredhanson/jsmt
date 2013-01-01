@@ -30,7 +30,7 @@
     "esprima": "1.x.x",
     "escodegen": "0.0.x",
     "estraverse": "0.0.x",
-    "resolve": "0.2.x",
+    "resolve": "git://github.com/dodo/node-resolve.git#3521c2f2b9",
     "amd-resolve": "0.1.x",
     "debug": "0.7.x"
   },
