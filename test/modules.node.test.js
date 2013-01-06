@@ -128,4 +128,35 @@ describe('modules middleware [Node]', function() {
   
   });
   
+  describe('serving increment program with transitive and flattened modules', function() {
+    var middleware = modules(__dirname + '/data/node/programs/increment', { resolve: 'node', main: 'program', transitive: true, flatten: true });
+    
+    it('should serve main program', function(done) {
+      Module._cache = {};
+    
+      var req = new MockRequest();
+      var res = new MockResponse(check);
+      
+      req.path = '/program.js';
+      middleware(req, res, function(err) {
+        check(err);
+      });
+      
+      function check(err) {
+        console.log(err);
+        if (err) { return done(err); }
+        res.headers.should.have.property('Content-Type');
+        res.headers['Content-Type'].should.equal('text/javascript');
+        
+        var expect = fs.readFileSync('test/expect/node/programs/increment/program.transitive.flatten.js', 'utf8')
+        console.log('data: ' + res.data);
+        console.log('expect: ' + expect);
+        res.data.should.equal(expect + '\n');
+        
+        done();
+      }
+    });
+  
+  });
+  
 });
